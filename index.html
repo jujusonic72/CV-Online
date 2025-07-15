@@ -1,1 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julien Poirier Morin - CV</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f7fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .main-container {
+        display: flex;
+        background-color:azure;
+    }
+    .side-bar {
+        background-color: rgb(211, 223, 223);
+        padding: 1rem;
+        width: fit-content;
+        border: 1px solid #ccc;
+    }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .floating-window {
+      position: absolute;
+      background-color: #fff;
+      border: 2px solid #c7d7e0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      resize: both;
+      overflow: auto;
+      
+    }
+    .floating-header {
+      cursor: move;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background-color: indigo;
+      color: azure;
+      position: fixed;
+      width: inherit;
+      border-radius: 9px 5px 0px 0px;
+    }
+    .content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    .floating-header .minimize-btn {
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: azure;
+    }
+    .floating-window h2 {
+      margin-top: 0;
+    }
+    .header img {
+      width: 100px;
+      border-radius: 50%;
+    }
+    .quote {
+      font-style: italic;
+      background-color: #f2f6fa;
+      padding: 1rem;
+      border-left: 5px solid #ff6f91;
+    }
+    .skill-icons img,
+    .social-icons img {
+      width: 24px;
+      margin-right: 8px;
+    }
+  .floating-window.dragging {
+      user-select: none;
+    }
+  .floating-window {
+      transition: opacity 0.15s ease-in-out;
+    }
+    .game_cell.has_cover {
+        margin: 1rem;
+    }
+  </style>
+</head>
+<body>
+    <div class="main-container">
+    <div id= "window-controls" class="side-bar">
+        <strong>Toggle Windows:</strong><br>
+  <label><input type="checkbox" class="toggle-window" value="window-contact" checked> Contact</label><br>
+  <label><input type="checkbox" class="toggle-window" value="window-education" checked> Education</label><br>
+  <label><input type="checkbox" class="toggle-window" value="window-experience" checked> Experience</label>
+    </div>
+  <div class="container">
+    <!-- Sample floating windows -->
+    <div class="floating-window" id="window-contact" style="top: 20px; left: 20px; width: 300px;">
+      <div class="floating-header">
+        Contact
+        <button class="minimize-btn">−</button>
+      </div>
+      <div class="content">
+        <p><strong>Phone:</strong> +1 438 346-4482</p>
+        <p><strong>Email:</strong> jpoiriermorin@gmail.com</p>
+        <p><strong>Address:</strong> 7030 Rue Sagard app1, H2E2S5, Montréal, Québec, Canada</p>
+      </div>
+    </div>
 
+    <div class="floating-window" id="window-education" style="top: 120px; left: 80px; width: 300px;">
+      <div class="floating-header">
+        Education
+        <button class="minimize-btn">−</button>
+      </div>
+      <div class="content">
+        <p><strong>Université:</strong> UQAC</p>
+        <p><strong>Baccalauréat:</strong> Développement de Jeux Vidéo</p>
+        <p><strong>Graduation:</strong> 2026</p>
+      </div>
+    </div>
+
+    <div class="floating-window" id="window-experience" style="top: 220px; left: 180px; width: 300px;">
+      <div class="floating-header">
+        Experience
+        <button class="minimize-btn">−</button>
+      </div>
+      <div class="content">
+        <p><strong>Stage:</strong> Programmation Gameplay chez Ubisoft Québec</p>
+        <p><strong>Stage travail:</strong> Développeur de Jeux Vidéo AR mobile</p>
+      </div>
+    </div>
+    <div class="floating-window" id="window-portfolio" style="top: 220px; left: 180px; width: 300px;">
+      <div class="floating-header">
+        Portfolio
+        <button class="minimize-btn">−</button>
+      </div>
+      <div class="content" style="display: flex; flex-wrap: wrap;">
+        <div dir="auto" class="game_cell has_cover" data-game_id="2581737">
+            <div class="game_thumb">
+                <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://coffeeempire.itch.io/bomberman-project" data-label="game:2581737:thumb">
+                    <img data-lazy_src="https://img.itch.zone/aW1nLzE1MzY5MDU5LnBuZw==/315x250%23c/m8LVKf.png" width="315" height="250" class="lazy_loaded" src="https://img.itch.zone/aW1nLzE1MzY5MDU5LnBuZw==/315x250%23c/m8LVKf.png">
+                </a>
+            </div>
+            <div class="game_cell_data">
+                <div class="game_title">
+                    <a data-action="game_grid" href="https://coffeeempire.itch.io/bomberman-project" class="title game_link" data-label="game:2581737:title">Bomberman Project</a></div><div class="game_author">
+                        <a data-action="game_grid" href="https://coffeeempire.itch.io" data-label="user:5308318">CoffeeEmpire</a>
+                    </div>
+                    <div class="game_genre">Action</div>
+                    <div class="game_platform">
+                        <span aria-hidden="true" class="icon icon-windows8" title="Download for Windows"></span> 
+                    </div>
+                </div>
+            </div>
+            <div dir="auto" class="game_cell has_cover" data-game_id="2581697">
+                <div class="game_thumb">
+                    <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://coffeeempire.itch.io/casse-briques" data-label="game:2581697:thumb">
+                        <img data-lazy_src="https://img.itch.zone/aW1nLzE1MzY5MDE3LnBuZw==/315x250%23c/royj7p.png" width="315" height="250" class="lazy_loaded" src="https://img.itch.zone/aW1nLzE1MzY5MDE3LnBuZw==/315x250%23c/royj7p.png"></a></div><div class="game_cell_data">
+                            <div class="game_title">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io/casse-briques" class="title game_link" data-label="game:2581697:title">Brick Breaker project</a>
+                            </div>
+                            <div title="school work brick breaker" class="game_text">school work brick breaker</div>
+                            <div class="game_author">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io" data-label="user:5308318">CoffeeEmpire</a>
+                            </div>
+                            <div class="game_platform">
+                                <span aria-hidden="true" class="icon icon-windows8" title="Download for Windows"></span> 
+                            </div>
+                        </div>
+                    </div>
+                    <div dir="auto" class="game_cell has_cover" data-game_id="2581612">
+                        <div class="game_thumb">
+                            <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://coffeeempire.itch.io/smile-n-run" data-label="game:2581612:thumb">
+                                <img data-lazy_src="https://img.itch.zone/aW1nLzE1MzY4MzEzLnBuZw==/315x250%23c/9r%2BGIj.png" width="315" height="250" class="lazy_loaded" src="https://img.itch.zone/aW1nLzE1MzY4MzEzLnBuZw==/315x250%23c/9r%2BGIj.png">
+                            </a>
+                        </div>
+                        <div class="game_cell_data">
+                            <div class="game_title">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io/smile-n-run" class="title game_link" data-label="game:2581612:title">Smile n Run</a>
+                            </div>
+                            <div title="Mini platformer rage-game style" class="game_text">Mini platformer rage-game style</div>
+                            <div class="game_author">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io" data-label="user:5308318">CoffeeEmpire</a>
+                            </div>
+                            <div class="game_genre">Platformer</div>
+                        </div>
+                    </div>
+                    <div dir="auto" class="game_cell has_cover" data-game_id="1394344">
+                        <div class="game_thumb">
+                            <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://coffeeempire.itch.io/le-donjon-de-vagharshak" data-label="game:1394344:thumb"><img data-lazy_src="https://img.itch.zone/aW1nLzE1MzY4MzI5LnBuZw==/315x250%23c/7Dtwy9.png" width="315" height="250" class="lazy_loaded" src="https://img.itch.zone/aW1nLzE1MzY4MzI5LnBuZw==/315x250%23c/7Dtwy9.png"></a>
+                        </div>
+                        <div class="game_cell_data">
+                            <div class="game_title">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io/le-donjon-de-vagharshak" class="title game_link" data-label="game:1394344:title">Le Donjon de Vagharshak</a>
+                            </div>
+                            <div title="Projet de session en équipe" class="game_text">Projet de session en équipe</div>
+                            <div class="game_author">
+                                <a data-action="game_grid" href="https://coffeeempire.itch.io" data-label="user:5308318">CoffeeEmpire</a>
+                            </div>
+                            <div class="game_genre">Adventure</div>
+                            <div class="game_platform">
+                                <span aria-hidden="true" class="icon icon-windows8" title="Download for Windows"></span> 
+                            </div>
+                        </div>
+                    </div>
+                    <div dir="auto" class="game_cell has_cover" data-game_id="2581572">
+                        <div class="game_thumb">
+                            <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://coffeeempire.itch.io/lunivers-du-son" data-label="game:2581572:thumb">
+                                <img data-lazy_src="https://img.itch.zone/aW1nLzE1MzY4MTQ0LnBuZw==/315x250%23c/eW%2Bybo.png" width="315" height="250" class="lazy_loaded" src="https://img.itch.zone/aW1nLzE1MzY4MTQ0LnBuZw==/315x250%23c/eW%2Bybo.png">
+                            </a>
+                        </div>
+                        <div class="game_cell_data"><div class="game_title">
+                            <a data-action="game_grid" href="https://coffeeempire.itch.io/lunivers-du-son" class="title game_link" data-label="game:2581572:title">L'univers du son</a>
+                        </div>
+                        <div title="Venez comprendre le monde digital du son." class="game_text">Venez comprendre le monde digital du son.</div>
+                        <div class="game_author">
+                            <a data-action="game_grid" href="https://coffeeempire.itch.io" data-label="user:5308318">CoffeeEmpire</a>
+                        </div>
+                        <div class="game_genre">Educational</div>
+                        <div class="game_platform">
+                            <span aria-hidden="true" class="icon icon-windows8" title="Download for Windows"></span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="game_cell has_cover lazy_images" dir="auto" style="display: none" data-game_id="2304214">
+                    <div style="background-color:#464646;" class="game_thumb">
+                        <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://thalmug.itch.io/galaxy-potatoes" data-label="game:2304214:thumb">
+                            <img data-lazy_src="https://img.itch.zone/aW1nLzEzNjU1MzY1LnBuZw==/315x250%23c/EPxuSo.png" width="315" height="250" class="lazy_loaded"></a></div><div class="game_cell_data">
+                                <div class="game_title">
+                                    <a data-action="game_grid" href="https://thalmug.itch.io/galaxy-potatoes" class="title game_link" data-label="game:2304214:title">Galaxy Potatoes</a>
+                                </div>
+                                <div title="A puzzle game where a corn gives you quests in a galaxy of food." class="game_text">A puzzle game where a corn gives you quests in a galaxy of food.</div>
+                                <div class="game_author">
+                                    <a data-action="game_grid" href="https://thalmug.itch.io" data-label="user:2928178">Thalia Meignan</a>
+                                </div>
+                                <div class="game_genre">Puzzle</div>
+                            </div>
+                        </div>
+                        <div class="game_cell has_cover lazy_images" dir="auto" style="display: none" data-game_id="1352347">
+                            <div style="background-color:#7a5c4e;" class="game_thumb">
+                                <a data-action="game_grid" tabindex="-1" class="thumb_link game_link" href="https://eltacos.itch.io/tavern-rush" data-label="game:1352347:thumb"><img data-lazy_src="https://img.itch.zone/aW1nLzc5MDU0NzcucG5n/315x250%23c/ndakUa.png" width="315" height="250" class="lazy_loaded"></a>
+                            </div>
+                            <div class="game_cell_data"><div class="game_title">
+                                <a data-action="game_grid" href="https://eltacos.itch.io/tavern-rush" class="title game_link" data-label="game:1352347:title">Tavern Rush</a>
+                            </div>
+                            <div title="Serve customers meals quickly !" class="game_text">Serve customers meals quickly !</div>
+                            <div class="game_author">
+                                <a data-action="game_grid" href="https://eltacos.itch.io" data-label="user:1504370">LosTacosDeZelda</a>
+                            </div>
+                            <div class="game_genre">Simulation</div>
+                            <div class="game_platform">
+                                <span class="web_flag">Play in browser</span>
+                                <span aria-hidden="true" class="icon icon-windows8" title="Download for Windows"></span>
+                                <span aria-hidden="true" class="icon icon-tux" title="Download for Linux"></span> 
+                            </div>
+                        </div>
+                    </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+  <script>
+    let zIndexCounter = 1000;
+
+    const saveState = () => {
+      const state = Array.from(document.querySelectorAll('.floating-window')).map(el => {
+        return {
+          id: el.id,
+          top: el.style.top,
+          left: el.style.left,
+          width: el.style.width,
+          height: el.style.height,
+          minimized: el.classList.contains('minimized')
+        };
+      });
+      localStorage.setItem('floatingWindowsState', JSON.stringify(state));
+    };
+
+    const restoreState = () => {
+      const saved = localStorage.getItem('floatingWindowsState');
+      if (saved) {
+        const state = JSON.parse(saved);
+        state.forEach(cfg => {
+          const el = document.getElementById(cfg.id);
+          if (el) {
+            el.style.top = cfg.top;
+            el.style.left = cfg.left;
+            el.style.width = cfg.width;
+            el.style.height = cfg.height;
+            if (cfg.minimized) {
+              el.classList.add('minimized');
+              const content = el.querySelector('.content');
+              if (content) content.style.display = 'none';
+            }
+          }
+        });
+      }
+    };
+
+    document.querySelectorAll('.floating-window').forEach(el => {
+  if (el.dataset.init) return;
+  el.dataset.init = true;
+
+  let isDragging = false, offsetX = 0, offsetY = 0;
+
+  const bringToFront = () => {
+    zIndexCounter++;
+    el.style.zIndex = zIndexCounter;
+  };
+
+  const dragStart = e => {
+    if (!e.target.closest('.floating-header')) return;
+    isDragging = true;
+    offsetX = e.clientX - el.offsetLeft;
+    offsetY = e.clientY - el.offsetTop;
+    bringToFront();
+    el.classList.add('dragging');
+  };
+
+  const dragMove = e => {
+    if (!isDragging) return;
+
+    const container = document.querySelector('.container');
+    const maxX = container.clientWidth - el.offsetWidth;
+    const maxY = container.clientHeight - el.offsetHeight;
+
+    let newLeft = e.clientX - offsetX;
+    let newTop = e.clientY - offsetY;
+
+    newLeft = Math.max(0, Math.min(newLeft, maxX));
+    newTop = Math.max(0, Math.min(newTop, maxY));
+
+    el.style.left = newLeft + 'px';
+    el.style.top = newTop + 'px';
+  };
+
+  const dragEnd = () => {
+    if (isDragging) {
+      isDragging = false;
+      el.classList.remove('dragging');
+      saveState();
+    }
+  };
+
+  el.querySelector('.floating-header')?.addEventListener('mousedown', dragStart);
+  document.addEventListener('mousemove', dragMove);
+  document.addEventListener('mouseup', dragEnd);
+
+  const minimizeBtn = el.querySelector('.minimize-btn');
+  const content = el.querySelector('.content');
+  if (minimizeBtn && content) {
+    minimizeBtn.addEventListener('click', () => {
+      const isHidden = content.style.display === 'none';
+      el.style.height = isHidden ? 'fit-content' : 'fit-content';
+      content.style.display = isHidden ? 'block' : 'none';
+      minimizeBtn.textContent = isHidden ? '−' : '+';
+      el.classList.toggle('minimized', !isHidden);
+      saveState();
+    });
+  }
+
+  const resizeObserver = new ResizeObserver(() => {
+    isDragging = false;
+    saveState();
+  });
+  resizeObserver.observe(el);
+});
+
+    restoreState();
+
+    // Re-bind toggle controls dynamically (for dynamically added windows)
+    const updateCheckboxBindings = () => {
+      const checkboxes = document.querySelectorAll('.toggle-window');
+      checkboxes.forEach(cb => {
+        cb.removeEventListener('change', cb._listener);
+        cb._listener = () => {
+          const target = document.getElementById(cb.value);
+          if (target) {
+            if (cb.checked) {
+              target.style.opacity = 0;
+              target.style.display = 'block';
+              setTimeout(() => target.style.opacity = 1, 150);
+            } else {
+              target.style.opacity = 1;
+              setTimeout(() => target.style.opacity = 0, 0);
+              setTimeout(() => target.style.display = 'none', 150);
+            }
+          }
+          const visibleState = {};
+          document.querySelectorAll('.toggle-window').forEach(box => {
+            visibleState[box.value] = box.checked;
+          });
+          localStorage.setItem('visibleWindowStates', JSON.stringify(visibleState));
+        };
+        cb.addEventListener('change', cb._listener);
+      });
+    };
+
+    updateCheckboxBindings();
+
+    const savedWindowStates = JSON.parse(localStorage.getItem('visibleWindowStates') || '{}');
+    document.querySelectorAll('.toggle-window').forEach(cb => {
+      if (savedWindowStates.hasOwnProperty(cb.value)) {
+        cb.checked = savedWindowStates[cb.value];
+        const target = document.getElementById(cb.value);
+        if (target) {
+          target.style.display = cb.checked ? 'block' : 'none';
+        }
+      }
+    });  
+
+    // Add show all / hide all functionality
+    const controlsDiv = document.getElementById('window-controls');
+    const btnShowAll = document.createElement('button');
+    const btnHideAll = document.createElement('button');
+    btnShowAll.textContent = 'Show All';
+    btnHideAll.textContent = 'Hide All';
+    btnShowAll.style.marginTop = '10px';
+    btnHideAll.style.marginLeft = '5px';
+    btnHideAll.style.marginTop = '10px';
+    controlsDiv.appendChild(document.createElement('br'));
+    controlsDiv.appendChild(btnShowAll);
+    controlsDiv.appendChild(btnHideAll);
+
+    btnShowAll.addEventListener('click', () => {
+      document.querySelectorAll('.toggle-window').forEach(cb => {
+        cb.checked = true;
+        cb.dispatchEvent(new Event('change'));
+      });
+    });
+
+    btnHideAll.addEventListener('click', () => {
+      document.querySelectorAll('.toggle-window').forEach(cb => {
+        cb.checked = false;
+        cb.dispatchEvent(new Event('change'));
+      });
+    });
+    // Handle window checkboxes
+    const checkboxes = document.querySelectorAll('.toggle-window');
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const target = document.getElementById(cb.value);
+        if (target) {
+          target.style.display = cb.checked ? 'block' : 'none';
+        }
+        // Save visibility state
+        const visibleState = {};
+        checkboxes.forEach(box => {
+          visibleState[box.value] = box.checked;
+        });
+        localStorage.setItem('visibleWindowStates', JSON.stringify(visibleState));
+      });
+    });
+
+  </script>
+  
+</body>
+</html>
