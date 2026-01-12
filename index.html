@@ -1,605 +1,415 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Julien Poirier Morin - CV</title>
-  <style>
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-toggle {
-      background: none;
-      border: none;
-      color: #ccc;
-      margin-left: 0.5rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-
-    .dropdown-toggle:hover {
-      color: white;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: inherit;
-      left: 0;
-      background-color: #21252b;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1001;
-      min-width: 140px;
-      border-radius: 4px;
-    }
-
-    .dropdown-menu button {
-      background: none;
-      border: none;
-      color: #ccc;
-      padding: 0.5rem 1rem;
-      text-align: left;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .dropdown-menu button:hover {
-      background-color: #2c313a;
-      color: white;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #21252b;
-      color: #ccc;
-      height: 32px;
-      padding: 0 1rem;
-      font-size: 0.85rem;
-      font-family: 'Segoe UI', sans-serif;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    }
-
-    .window-controls {
-      display: flex;
-      gap: 0.4rem;
-    }
-    .side-bar .side-bar-section {
-      position: relative;
-      display: inline-block;
-      background-color: none;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1001;
-      min-width: 140px;
-    }
-    .side-bar-menu {
-      display: flex;
-      flex-direction: column;
-      top: inherit;
-      left: 0;
-      border-radius: 4px;
-      padding-left: 1rem;
-    }
-    .side-bar-toggle {
-      background: none;
-      border: none;
-      color: #ccc;
-      margin-left: 0.5rem;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .top-bar-title {
-      flex-grow: 1;
-      text-align: center;
-      color: #ccc;
-      font-weight: 500;
-    }
-
-    .top-bar-menu button {
-      background: none;
-      border: none;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-
-    .top-bar-menu button:hover {
-      color: white;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f7fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-container {
-      display: flex;
-      background-color: azure;
-    }
-
-    .side-bar {
-      width: 220px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 0.9rem;
-      background-color: #2c313a;
-      color: azure;
-      padding-left: 1rem;
-      padding-top: 1rem;
-    }
-
-    .side-bar label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      transition: background-color 0.2s ease-in-out;
-      cursor: pointer;
-      color: azure;
-      margin-right: 0.5rem;
-    }
-
-    .side-bar label:hover {
-      background-color: #454c5b;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      transition: background-color 0.2s ease-in-out;
-      cursor: pointer;
-
-    }
-
-
-    .container {
-      position: relative;
-      width: 100vw;
-      height: 95vh;
-      overflow: hidden;
-    }
-
-    .floating-window {
-      position: absolute;
-      background-color: #fff;
-      border: 2px solid #c7d7e0;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px indigo;
-      resize: both;
-      overflow: auto;
-      resize: both;
-      overflow: auto;
-      min-height: 100px;
-      max-height: 99vh;
-      padding-right: 1rem;
-    }
-
-    .floating-header {
-      cursor: move;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-      background-color: indigo;
-      color: azure;
-      position: fixed;
-      width: inherit;
-      border-radius: 9px 5px 0px 0px;
-      box-shadow: 2px 0 0 2px 1px indigo;
-      padding: 0.3rem 0rem 0.3rem 1rem;
-    }
-
-    .content {
-      margin: 1rem;
-      padding: 1rem;
-    }
-
-    .floating-header .minimize-btn {
-      background: none;
-      border: none;
-      font-size: 1.2em;
-      cursor: pointer;
-      color: azure;
-    }
-
-    .floating-window h2 {
-      margin-top: 0;
-    }
-
-    .header img {
-      width: 100px;
-      border-radius: 50%;
-    }
-
-    .quote {
-      font-style: italic;
-      background-color: #f2f6fa;
-      padding: 1rem;
-      border-left: 5px solid #ff6f91;
-    }
-
-    .skill-icons img,
-    .social-icons img {
-      width: 24px;
-      margin-right: 8px;
-    }
-
-    .floating-window.dragging {
-      user-select: none;
-    }
-
-    .floating-window {
-      transition: opacity 0.15s ease-in-out;
-    }
-
-    .game_cell.has_cover {
-      margin: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <!-- Burger Menu for Mobile -->
+  <div class="burger-menu">
+    <button class="burger-btn" id="burger-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <!-- Overlay for mobile sidebar -->
+  <div class="side-bar-overlay" id="sidebar-overlay"></div>
+
   <header class="top-bar">
     <div class="top-bar-menu">
       <div class="dropdown">
-        <button class="dropdown-toggle">File</button>
+        <button class="dropdown-toggle" data-i18n="menu.file">Fichier</button>
         <div class="dropdown-menu">
-          <button id="menu-web">Version Web</button>
-          <button id="menu-pdf">Version PDF</button>
+          <button id="menu-web" data-i18n="menu.webVersion">Version Web</button>
+          <button id="menu-pdf" data-i18n="menu.pdfVersion">Version PDF</button>
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-toggle">Edit</button>
+        <button class="dropdown-toggle" data-i18n="menu.edit">Édition</button>
         <div class="dropdown-menu">
-          <button id="menu-hide-all">Hide All</button>
-          <button id="menu-show-all">Show All</button>
-          <button id="menu-minimize-all">Minimize All</button>
-          <button id="menu-extend-all">Extend All</button>
+          <button id="menu-hide-all" data-i18n="menu.hideAll">Tout cacher</button>
+          <button id="menu-show-all" data-i18n="menu.showAll">Tout afficher</button>
+          <button id="menu-minimize-all" data-i18n="menu.minimizeAll">Tout minimiser</button>
+          <button id="menu-extend-all" data-i18n="menu.extendAll">Tout étendre</button>
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-toggle">Langue</button>
+        <button class="dropdown-toggle" data-i18n="menu.language">Langue</button>
         <div class="dropdown-menu">
           <button id="menu-en">EN</button>
           <button id="menu-fr">FR</button>
         </div>
       </div>
-      <button>Help</button>
+      <button data-i18n="menu.help">Aide</button>
     </div>
     <div class="top-bar-title">Julien Poirier Morin – CV</div>
   </header>
+
   <div class="main-container">
     <div id="window-controls" class="side-bar">
-      <strong>Window selection:</strong><br>
+      <div class="side-bar-title" data-i18n="sidebar.windows">Fenêtres</div>
+      
       <div class="side-bar-section">
-        <button class="side-bar-toggle":checkbox>Info perso</button>
-        <div class="side-bar-menu" id="info-perso">
-          <label><input type="checkbox" class="toggle-window" value="window-experience" checked> Photo</label><br>
-          <label><input type="checkbox" class="toggle-window" value="window-contact" checked> Contact</label><br>
-          <label><input type="checkbox" class="toggle-window" value="window-experience" checked> Compétences</label>
+        <div class="side-bar-section-header">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span data-i18n="sidebar.personalInfo">Info perso</span>
+        </div>
+        <div class="side-bar-menu">
+          <div class="window-toggle active" data-window="window-Actu">
+            <span class="toggle-label">
+              <span class="toggle-icon">📷</span>
+              <span data-i18n="sidebar.photo">Photo</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
+          <div class="window-toggle active" data-window="window-contact">
+            <span class="toggle-label">
+              <span class="toggle-icon">📞</span>
+              <span data-i18n="sidebar.contact">Contact</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
+          <div class="window-toggle active" data-window="window-competences">
+            <span class="toggle-label">
+              <span class="toggle-icon">⚡</span>
+              <span data-i18n="sidebar.skills">Compétences</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
         </div>
       </div>
+
       <div class="side-bar-section">
-        <button class="side-bar-toggle">Experiences</button>
-        <div class="side-bar-menu" id="experiences">
-          <label><input type="checkbox" class="toggle-window" value="window-education" checked> Education</label><br>
-          <label><input type="checkbox" class="toggle-window" value="window-xp-pro" checked> Expérience
-            professionelle</label><br>
+        <div class="side-bar-section-header">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span data-i18n="sidebar.experience">Expériences</span>
+        </div>
+        <div class="side-bar-menu">
+          <div class="window-toggle active" data-window="window-education">
+            <span class="toggle-label">
+              <span class="toggle-icon">🎓</span>
+              <span data-i18n="sidebar.education">Éducation</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
+          <div class="window-toggle active" data-window="window-xp-pro">
+            <span class="toggle-label">
+              <span class="toggle-icon">💼</span>
+              <span data-i18n="sidebar.workExperience">Expérience pro</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
         </div>
       </div>
+
       <div class="side-bar-section">
-        <button class="side-bar-toggle">Portfolios</button>
-        <div class="side-bar-menu" id="portfolios">
-          <label><input type="checkbox" class="toggle-window" value="window-experience" checked> Portfolio
-            Son</label><br>
-          <label><input type="checkbox" class="toggle-window" value="window-experience" checked> Portfolio
-            Jeux</label><br>
+        <div class="side-bar-section-header">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span data-i18n="sidebar.portfolios">Portfolios</span>
+        </div>
+        <div class="side-bar-menu">
+          <div class="window-toggle active" data-window="window-portfolio">
+            <span class="toggle-label">
+              <span class="toggle-icon">🎮</span>
+              <span data-i18n="sidebar.gamesPortfolio">Portfolio Jeux</span>
+            </span>
+            <span class="toggle-switch"></span>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="container">
-      <!-- Sample floating windows -->
-      <div class="floating-window" id="window-contact" style="top: 20px; left: 20px; width: 300px;">
+      <!-- Contact Window -->
+      <div class="floating-window" id="window-contact" style="top: 20px; left: 20px; width: 320px;">
         <div class="floating-header">
-          Contact
+          <span data-i18n="sidebar.contact">Contact</span>
           <button class="minimize-btn">−</button>
         </div>
         <div class="content">
-          <p><strong>Phone:</strong> +1 438 346-4482</p>
-          <p><strong>Email:</strong> jpoiriermorin@gmail.com</p>
-          <p><strong>Address:</strong> 7030 Rue Sagard app1, H2E2S5, Montréal, Québec, Canada</p>
+          <p><strong data-i18n="contact.phone">Téléphone:</strong> +1 438 346-4482</p>
+          <p><strong data-i18n="contact.email">Courriel:</strong> julien.pm.08@outlook.com</p>
+          <p><strong data-i18n="contact.address">Adresse:</strong> 7030 Rue Sagard app1, H2E2S5, Montréal, Québec, Canada</p>
         </div>
       </div>
 
-      <div class="floating-window" id="window-education" style="top: 120px; left: 80px; width: 300px;">
+      <!-- Portfolio Window -->
+      <div class="floating-window" id="window-portfolio" style="top: 20px; left: 360px; width: 520px; height: 450px;">
         <div class="floating-header">
-          Education
+          <span data-i18n="sidebar.gamesPortfolio">Portfolio Jeux</span>
           <button class="minimize-btn">−</button>
         </div>
         <div class="content">
-          <p><strong>Université:</strong> UQAC</p>
-          <p><strong>Baccalauréat:</strong> Développement de Jeux Vidéo</p>
-          <p><strong>Graduation:</strong> 2026</p>
+          <div class="game_list">
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/bomberman-project">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="https://img.itch.zone/aW1nLzE1MzY5MDU5LnBuZw==/315x250%23c/m8LVKf.png" alt="Bomberman Project">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/bomberman-project">Bomberman Project</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/casse-briques">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="https://img.itch.zone/aW1nLzE1MzY5MDE3LnBuZw==/315x250%23c/royj7p.png" alt="Brick Breaker">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/casse-briques">Brick Breaker Project</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://thalmug.itch.io/galaxy-potatoes">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="https://img.itch.zone/aW1nLzEzNjU1MzY1LnBuZw==/315x250%23c/EPxuSo.png" alt="Galaxy Potatoes">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://thalmug.itch.io/galaxy-potatoes">Galaxy Potatoes</a>
+                    <div class="owner"><span data-i18n="portfolio.with">avec</span> <a href="https://thalmug.itch.io">Thalia Meignan</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/lunivers-du-son">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="https://img.itch.zone/aW1nLzE1MzY4MTQ0LnBuZw==/315x250%23c/eW%2Bybo.png" alt="L'univers du son">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/lunivers-du-son">L'univers du son</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/le-donjon-de-vagharshak">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="" alt="Le donjon de Vagharshak">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/le-donjon-de-vagharshak">Le donjon de Vagharshak</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://theoledx.itch.io/pink-afro">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="" alt="Pink Afro">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://theoledx.itch.io/pink-afro">Pink Afro</a>
+                    <div class="owner"><span data-i18n="portfolio.with">avec</span> <a href="https://theoledx.itch.io">Théo Ledoux</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/smile-n-run">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="" alt="Smile n Run">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/smile-n-run">Smile n Run</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://eltacos.itch.io/tavern-rush">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="" alt="Tavern Rush">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://eltacos.itch.io/tavern-rush">Tavern Rush</a>
+                    <div class="owner"><span data-i18n="portfolio.with">avec</span> <a href="https://eltacos.itch.io">LosTacosDeZelda</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="game_row">
+              <div class="row_columns">
+                <a class="cover_link" href="https://coffeeempire.itch.io/dans-labme-des-rves">
+                  <div class="lazy_image_widget">
+                    <img class="cover_image" src="" alt="Wraith's Depths">
+                  </div>
+                </a>
+                <div class="game_details">
+                  <div class="game_title">
+                    <a class="game_link" href="https://coffeeempire.itch.io/dans-labme-des-rves">Wraith's Depths</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="floating-window" id="window-experience" style="top: 220px; left: 180px; width: 300px;">
+      <!-- Compétences Window -->
+      <div class="floating-window" id="window-competences" style="top: 180px; left: 20px; width: 350px;">
         <div class="floating-header">
-          Experience
+          <span data-i18n="sidebar.skills">Compétences</span>
           <button class="minimize-btn">−</button>
         </div>
         <div class="content">
-          <p><strong>Stage:</strong> Programmation Gameplay chez Ubisoft Québec</p>
-          <p><strong>Stage travail:</strong> Développeur de Jeux Vidéo AR mobile</p>
+          <p><strong data-i18n="skills.software">Logiciels</strong></p>
+          <div class="competence"><li>Unity</li><div class="bar" xp="9"><div class="progress"></div></div></div>
+          <div class="competence"><li>Unreal Engine</li><div class="bar" xp="9"><div class="progress"></div></div></div>
+          <div class="competence"><li>Adobe Audition</li><div class="bar" xp="7.5"><div class="progress"></div></div></div>
+          <div class="competence"><li>Roblox Studio</li><div class="bar" xp="6"><div class="progress"></div></div></div>
+          <p><strong data-i18n="skills.languages">Langages</strong></p>
+          <div class="competence"><li>C#</li><div class="bar" xp="8.5"><div class="progress"></div></div></div>
+          <div class="competence"><li>C++</li><div class="bar" xp="9"><div class="progress"></div></div></div>
+          <div class="competence"><li>LUAU</li><div class="bar" xp="7"><div class="progress"></div></div></div>
+          <div class="competence"><li>HTML/CSS/JS</li><div class="bar" xp="7"><div class="progress"></div></div></div>
+          <div class="competence"><li>Python</li><div class="bar" xp="6"><div class="progress"></div></div></div>
+          <div class="competence"><li>SQL</li><div class="bar" xp="5"><div class="progress"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Moi actuellement Window -->
+      <div class="floating-window" id="window-Actu" style="top: 20px; left: 900px; width: 300px;">
+        <div class="floating-header">
+          <span data-i18n="about.title">Moi actuellement</span>
+          <button class="minimize-btn">−</button>
+        </div>
+        <div class="content">
+          <img src="./CV/Sources/photoProfil2025.jpg" width="100%" alt="Photo de profil">
+          <p><strong data-i18n="about.job">Emploi:</strong> <span data-i18n="about.jobDesc">Professeur de création de jeux vidéo chez Studio XP à temps partiel</span></p>
+          <p><strong data-i18n="about.studies">Études:</strong> <span data-i18n="about.studiesDesc">Étudiant à temps plein à l'UQAT</span></p>
+          <p><strong data-i18n="about.status">Statut:</strong> <span data-i18n="about.statusDesc">Ouvert aux opportunités de travail</span></p>
+        </div>
+      </div>
+
+      <!-- Education Window -->
+      <div class="floating-window" id="window-education" style="top: 320px; left: 900px; width: 340px;">
+        <div class="floating-header">
+          <span data-i18n="sidebar.education">Éducation</span>
+          <button class="minimize-btn">−</button>
+        </div>
+        <div class="content">
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1rem;">
+              <p><strong data-i18n="education.university">Université:</strong> UQAT</p>
+              <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqatProgram">Création de jeux vidéo (programmation jouabilité)</span></p>
+              <p><strong data-i18n="education.graduation">Graduation:</strong> 2028</p>
+            </li>
+            <li style="margin-bottom: 1rem;">
+              <p><strong data-i18n="education.university">Université:</strong> UQAC</p>
+              <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqacProgram">Développement de Jeux Vidéo</span></p>
+              <p><strong data-i18n="education.graduation">Graduation:</strong> <span data-i18n="education.programChange">Changement de programme</span></p>
+            </li>
+            <li style="margin-bottom: 1rem;">
+              <p><strong data-i18n="education.cegep">CÉGEP:</strong> Collège de Maisonneuve</p>
+              <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.maisonneuveProgram">Techniques d'intégration multimédia</span></p>
+              <p><strong data-i18n="education.graduation">Graduation:</strong> 2023</p>
+            </li>
+            <li>
+              <p><strong data-i18n="education.highSchool">Secondaire:</strong> Collège Notre-Dame</p>
+              <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.highSchoolDiploma">Diplôme d'études secondaires</span></p>
+              <p><strong data-i18n="education.graduation">Graduation:</strong> 2020</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Expérience professionnelle Window -->
+      <div class="floating-window" id="window-xp-pro" style="top: 480px; left: 360px; width: 420px;">
+        <div class="floating-header">
+          <span data-i18n="work.title">Expérience professionnelle</span>
+          <button class="minimize-btn">−</button>
+        </div>
+        <div class="content">
+          <p><strong data-i18n="work.internship">Stage:</strong> <span data-i18n="work.ubiPosition">Programmation Gameplay chez Ubisoft Québec</span><br><em data-i18n="work.ubiDate">Printemps 2025</em></p>
+          <ol>
+            <li data-i18n="work.ubi1">Programmation Gameplay sur AC Shadows</li>
+            <li data-i18n="work.ubi2">Développement sur éditeur propriétaire Anvil</li>
+            <li data-i18n="work.ubi3">Débogage et investigation dans un codebase vaste et complexe</li>
+            <li data-i18n="work.ubi4">Création et modification de fonctionnalités sur un éditeur de jeu</li>
+          </ol>
+
+          <p><strong data-i18n="work.internshipToJob">Stage→Travail:</strong> <span data-i18n="work.couleurPosition">Développeur de Jeux Vidéo AR mobile chez Couleur.tv</span><br><em>2023 - 2025</em></p>
+          <ol>
+            <li data-i18n="work.couleur1">Développement d'une application en RA sur Unity</li>
+            <li data-i18n="work.couleur2">Programmation de l'interactivité en RA</li>
+            <li data-i18n="work.couleur3">Intégration d'assets et level design</li>
+            <li data-i18n="work.couleur4">Programmation sonore pour RA</li>
+          </ol>
+
+          <p><strong data-i18n="work.internship">Stage:</strong> <span data-i18n="work.revenuPosition">Étudiant en multimédia chez Revenu Québec</span><br><em>2022 - 2023</em></p>
+          <ol>
+            <li data-i18n="work.revenu1">Gestion de contenu d'une page SharePoint</li>
+            <li data-i18n="work.revenu2">Résolution de problèmes</li>
+            <li data-i18n="work.revenu3">Demandes de modifications de pages</li>
+            <li data-i18n="work.revenu4">Création de designs</li>
+            <li data-i18n="work.revenu5">Analyse d'impact</li>
+          </ol>
+
+          <p><strong data-i18n="work.internship">Stage:</strong> <span data-i18n="work.alicePosition">Développeur de jeux vidéo stagiaire chez Alice & Smith</span><br><em data-i18n="work.aliceDate">Été 2022</em></p>
+          <ol>
+            <li data-i18n="work.alice1">Gestion de serveurs multijoueurs</li>
+            <li data-i18n="work.alice2">Utilisation d'API et optimisation serveur</li>
+            <li data-i18n="work.alice3">Autonomie de travail</li>
+            <li data-i18n="work.alice4">Évaluation du temps requis pour un travail</li>
+          </ol>
+
+          <p><strong data-i18n="work.job">Travail:</strong> <span data-i18n="work.rocldPosition">Développeur web à contrat chez ROCLD</span><br><em>2022 - 2023</em></p>
+          <ol>
+            <li data-i18n="work.rocld1">Gestion de contenu d'un site Web</li>
+            <li data-i18n="work.rocld2">Développement et programmation d'un site web</li>
+            <li data-i18n="work.rocld3">Intégration d'un thème Wordpress à partir d'une maquette</li>
+          </ol>
         </div>
       </div>
     </div>
-
   </div>
 
-  <script>
-    let zIndexCounter = 1000;
-
-    const saveState = () => {
-      const state = Array.from(document.querySelectorAll('.floating-window')).map(el => {
-        return {
-          id: el.id,
-          top: el.style.top,
-          left: el.style.left,
-          width: el.style.width,
-          height: el.style.height,
-          minimized: el.classList.contains('minimized')
-        };
-      });
-      localStorage.setItem('floatingWindowsState', JSON.stringify(state));
-    };
-
-    const restoreState = () => {
-      const saved = localStorage.getItem('floatingWindowsState');
-      if (saved) {
-        const state = JSON.parse(saved);
-        state.forEach(cfg => {
-          const el = document.getElementById(cfg.id);
-          if (el) {
-            el.style.top = cfg.top;
-            el.style.left = cfg.left;
-            el.style.width = cfg.width;
-            el.style.height = cfg.height;
-            if (cfg.minimized) {
-              el.classList.add('minimized');
-              const content = el.querySelector('.content');
-              if (content) content.style.display = 'none';
-            }
-          }
-        });
-      }
-    };
-
-    document.querySelectorAll('.floating-window').forEach(el => {
-      if (el.dataset.init) return;
-      el.dataset.init = true;
-
-      let isDragging = false, offsetX = 0, offsetY = 0;
-
-      const bringToFront = () => {
-        zIndexCounter++;
-        el.style.zIndex = zIndexCounter;
-      };
-
-      const dragStart = e => {
-        if (!e.target.closest('.floating-header')) return;
-        isDragging = true;
-        offsetX = e.clientX - el.offsetLeft;
-        offsetY = e.clientY - el.offsetTop;
-        bringToFront();
-        el.classList.add('dragging');
-      };
-
-      const dragMove = e => {
-        if (!isDragging) return;
-
-        const container = document.querySelector('.container');
-        const maxX = container.clientWidth - el.offsetWidth;
-        const maxY = container.clientHeight - el.offsetHeight;
-
-        let newLeft = e.clientX - offsetX;
-        let newTop = e.clientY - offsetY;
-
-        newLeft = Math.max(0, Math.min(newLeft, maxX));
-        newTop = Math.max(0, Math.min(newTop, maxY));
-
-        el.style.left = newLeft + 'px';
-        el.style.top = newTop + 'px';
-      };
-
-      const dragEnd = () => {
-        if (isDragging) {
-          isDragging = false;
-          el.classList.remove('dragging');
-          saveState();
-        }
-      };
-
-      el.querySelector('.floating-header')?.addEventListener('mousedown', dragStart);
-      document.addEventListener('mousemove', dragMove);
-      document.addEventListener('mouseup', dragEnd);
-
-      const minimizeBtn = el.querySelector('.minimize-btn');
-      const content = el.querySelector('.content');
-      if (minimizeBtn && content) {
-        minimizeBtn.addEventListener('click', () => {
-          const isHidden = content.style.display === 'none';
-          el.style.height = isHidden ? 'fit-content' : 'fit-content';
-          content.style.display = isHidden ? 'block' : 'none';
-          minimizeBtn.textContent = isHidden ? '−' : '+';
-          el.classList.toggle('minimized', !isHidden);
-          saveState();
-        });
-      }
-
-      const resizeObserver = new ResizeObserver(() => {
-        isDragging = false;
-        saveState();
-      });
-      resizeObserver.observe(el);
-
-      window.addEventListener('resize', () => {
-        const container = document.querySelector('.container');
-        const maxX = container.clientWidth - el.offsetWidth;
-        const maxY = container.clientHeight - el.offsetHeight;
-
-        let currentLeft = parseInt(el.style.left, 10);
-        let currentTop = parseInt(el.style.top, 10);
-
-        if (currentLeft > maxX) el.style.left = Math.max(0, maxX) + 'px';
-        if (currentTop > maxY) el.style.top = Math.max(0, maxY) + 'px';
-      });
-    });
-
-    restoreState();
-
-    // Re-bind toggle controls dynamically (for dynamically added windows)
-    const updateCheckboxBindings = () => {
-      const checkboxes = document.querySelectorAll('.toggle-window');
-      checkboxes.forEach(cb => {
-        cb.removeEventListener('change', cb._listener);
-        cb._listener = () => {
-          const target = document.getElementById(cb.value);
-          if (target) {
-            if (cb.checked) {
-              target.style.opacity = 0;
-              target.style.display = 'block';
-              setTimeout(() => target.style.opacity = 1, 150);
-            } else {
-              target.style.opacity = 1;
-              setTimeout(() => target.style.opacity = 0, 0);
-              setTimeout(() => target.style.display = 'none', 150);
-            }
-          }
-          const visibleState = {};
-          document.querySelectorAll('.toggle-window').forEach(box => {
-            visibleState[box.value] = box.checked;
-          });
-          localStorage.setItem('visibleWindowStates', JSON.stringify(visibleState));
-        };
-        cb.addEventListener('change', cb._listener);
-      });
-    };
-
-    updateCheckboxBindings();
-
-    const savedWindowStates = JSON.parse(localStorage.getItem('visibleWindowStates') || '{}');
-    document.querySelectorAll('.toggle-window').forEach(cb => {
-      if (savedWindowStates.hasOwnProperty(cb.value)) {
-        cb.checked = savedWindowStates[cb.value];
-        const target = document.getElementById(cb.value);
-        if (target) {
-          target.style.display = cb.checked ? 'block' : 'none';
-        }
-      }
-    });
-
-    // Add show all / hide all functionality
-    const controlsDiv = document.getElementById('window-controls');
-    const btnShowAll = document.createElement('button');
-    const btnHideAll = document.createElement('button');
-    btnShowAll.textContent = 'Show All';
-    btnHideAll.textContent = 'Hide All';
-    btnShowAll.style.marginTop = '10px';
-    btnHideAll.style.marginLeft = '5px';
-    btnHideAll.style.marginTop = '10px';
-
-
-    btnShowAll.addEventListener('click', () => {
-      document.querySelectorAll('.toggle-window').forEach(cb => {
-        cb.checked = true;
-        cb.dispatchEvent(new Event('change'));
-      });
-    });
-
-    btnHideAll.addEventListener('click', () => {
-      document.querySelectorAll('.toggle-window').forEach(cb => {
-        cb.checked = false;
-        cb.dispatchEvent(new Event('change'));
-      });
-    });
-    // Handle window checkboxes
-    const checkboxes = document.querySelectorAll('.toggle-window');
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', () => {
-        const target = document.getElementById(cb.value);
-        if (target) {
-          target.style.display = cb.checked ? 'block' : 'none';
-        }
-        // Save visibility state
-        const visibleState = {};
-        checkboxes.forEach(box => {
-          visibleState[box.value] = box.checked;
-        });
-        localStorage.setItem('visibleWindowStates', JSON.stringify(visibleState));
-      });
-    });
-
-
-    document.getElementById('menu-hide-all')?.addEventListener('click', () => {
-      document.querySelectorAll('.toggle-window').forEach(cb => {
-        cb.checked = false;
-        cb.dispatchEvent(new Event('change'));
-      });
-    });
-
-    document.getElementById('menu-show-all')?.addEventListener('click', () => {
-      document.querySelectorAll('.toggle-window').forEach(cb => {
-        cb.checked = true;
-        cb.dispatchEvent(new Event('change'));
-      });
-    });
-
-    document.getElementById('menu-minimize-all')?.addEventListener('click', () => {
-      document.querySelectorAll('.floating-window').forEach(el => {
-        const content = el.querySelector('.content');
-        const btn = el.querySelector('.minimize-btn');
-        if (content && btn && content.style.display !== 'none') {
-          content.style.display = 'none';
-          btn.textContent = '+';
-          el.classList.add('minimized');
-        }
-      });
-      saveState();
-    });
-
-    document.getElementById('menu-extend-all')?.addEventListener('click', () => {
-      document.querySelectorAll('.floating-window').forEach(el => {
-        const content = el.querySelector('.content');
-        const btn = el.querySelector('.minimize-btn');
-        if (content && btn && content.style.display === 'none') {
-          content.style.display = 'block';
-          btn.textContent = '−';
-          el.classList.remove('minimized');
-        }
-      });
-      saveState();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
