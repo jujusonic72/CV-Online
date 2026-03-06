@@ -232,12 +232,6 @@ const restoreState = () => {
     state.forEach(cfg => {
       const el = document.getElementById(cfg.id);
       if (el) {
-        if (!isMobile()) {
-          el.style.top = cfg.top;
-          el.style.left = cfg.left;
-          el.style.width = cfg.width;
-          el.style.height = cfg.height;
-        }
         if (cfg.zIndex) {
           el.style.zIndex = cfg.zIndex;
           const z = parseInt(cfg.zIndex, 10);
@@ -311,11 +305,11 @@ const initializeFloatingWindows = () => {
     if (minimizeBtn && content) {
       minimizeBtn.addEventListener('click', () => {
         const isHidden = content.style.display === 'none';
-        el.style.height = isHidden ? 'fit-content' : 'fit-content';
         content.style.display = isHidden ? 'block' : 'none';
         minimizeBtn.textContent = isHidden ? '−' : '+';
         el.classList.toggle('minimized', !isHidden);
         saveState();
+        layoutWindows();
       });
     }
 
@@ -354,12 +348,16 @@ const updateToggleBindings = () => {
           toggle.classList.remove('active');
           target.style.opacity = 1;
           setTimeout(() => target.style.opacity = 0, 0);
-          setTimeout(() => target.style.display = 'none', 150);
+          setTimeout(() => {
+            target.style.display = 'none';
+            layoutWindows();
+          }, 150);
         } else {
           toggle.classList.add('active');
           target.style.opacity = 0;
           target.style.display = getWindowDisplay();
           setTimeout(() => target.style.opacity = 1, 10);
+          layoutWindows();
         }
       }
       
@@ -394,6 +392,13 @@ const restoreToggleStates = () => {
 
 // ===== MENU ACTIONS =====
 const setupMenuActions = () => {
+  document.getElementById('menu-pdf')?.addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = './CV/Sources/Julien Poirier Morin - CV.pdf';
+    a.download = 'Julien Poirier Morin - CV.pdf';
+    a.click();
+  });
+
   document.getElementById('menu-hide-all')?.addEventListener('click', () => {
     document.querySelectorAll('.window-toggle').forEach(toggle => {
       if (toggle.classList.contains('active')) {
@@ -421,6 +426,7 @@ const setupMenuActions = () => {
       }
     });
     saveState();
+    layoutWindows();
   });
 
   document.getElementById('menu-extend-all')?.addEventListener('click', () => {
@@ -434,6 +440,7 @@ const setupMenuActions = () => {
       }
     });
     saveState();
+    layoutWindows();
   });
 };
 
@@ -469,6 +476,72 @@ const setupBurgerMenu = () => {
   });
 };
 
+// ===== AUTO-LAYOUT =====
+const layoutDef = [
+  { ids: ['window-Actu', 'window-contact', 'window-competences'], weight: 0.13 },
+  { ids: ['window-education', 'window-xp-pro'], weight: 0.42 },
+  { ids: ['window-portfolio'], weight: 0.45 }
+];
+
+const layoutWindows = () => {
+  if (isMobile()) return;
+
+  const container = document.querySelector('.container');
+  const cw = container.clientWidth;
+  const ch = container.clientHeight;
+  const gap = 10;
+
+  // Build visible columns with their weights
+  const visibleCols = [];
+  layoutDef.forEach(def => {
+    const els = def.ids.map(id => document.getElementById(id)).filter(el => el && el.style.display !== 'none');
+    if (els.length > 0) visibleCols.push({ els, weight: def.weight });
+  });
+
+  if (visibleCols.length === 0) return;
+
+  // Normalize weights for visible columns
+  const totalWeight = visibleCols.reduce((sum, c) => sum + c.weight, 0);
+  const usableWidth = cw - gap * (visibleCols.length + 1);
+
+  let x = gap;
+  visibleCols.forEach(col => {
+    const colWidth = (col.weight / totalWeight) * usableWidth;
+
+    // Temporarily set width and auto height to measure natural sizes
+    col.els.forEach(el => {
+      el.style.width = colWidth + 'px';
+      el.style.height = 'auto';
+    });
+
+    const naturalHeights = col.els.map(el => el.scrollHeight);
+    const totalNatural = naturalHeights.reduce((a, b) => a + b, 0);
+    const availableHeight = ch - gap * (col.els.length + 1);
+
+    let y = gap;
+    col.els.forEach((el, i) => {
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.style.width = colWidth + 'px';
+
+      let h;
+      if (totalNatural <= availableHeight) {
+        h = naturalHeights[i] + (availableHeight - totalNatural) * (naturalHeights[i] / totalNatural);
+      } else {
+        h = (naturalHeights[i] / totalNatural) * availableHeight;
+      }
+      h = Math.max(80, Math.floor(h));
+      el.style.height = h + 'px';
+
+      y += h + gap;
+    });
+
+    x += colWidth + gap;
+  });
+
+  saveState();
+};
+
 // ===== SKILL BARS INITIALIZATION =====
 const initializeSkillBars = () => {
   const bars = document.querySelectorAll('.bar');
@@ -494,4 +567,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLanguageButtons();
   setLanguage(currentLanguage);
   initializeSkillBars();
+  layoutWindows();
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(layoutWindows, 100);
+  });
 });

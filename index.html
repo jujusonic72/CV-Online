@@ -137,7 +137,7 @@
 
     <div class="container">
       <!-- Contact Window -->
-      <div class="floating-window" id="window-contact" style="top: 20px; left: 20px; width: 320px;">
+      <div class="floating-window" id="window-contact">
         <div class="floating-header">
           <span data-i18n="sidebar.contact">Contact</span>
           <button class="minimize-btn">−</button>
@@ -150,7 +150,7 @@
       </div>
 
       <!-- Portfolio Window -->
-      <div class="floating-window" id="window-portfolio" style="top: 20px; left: 360px; width: 520px; height: 450px;">
+      <div class="floating-window" id="window-portfolio">
         <div class="floating-header">
           <span data-i18n="sidebar.gamesPortfolio">Portfolio Jeux</span>
           <button class="minimize-btn">−</button>
@@ -291,7 +291,7 @@
       </div>
 
       <!-- Compétences Window -->
-      <div class="floating-window" id="window-competences" style="top: 180px; left: 20px; width: 350px;">
+      <div class="floating-window" id="window-competences">
         <div class="floating-header">
           <span data-i18n="sidebar.skills">Compétences</span>
           <button class="minimize-btn">−</button>
@@ -313,7 +313,7 @@
       </div>
 
       <!-- Moi actuellement Window -->
-      <div class="floating-window" id="window-Actu" style="top: 20px; left: 900px; width: 300px;">
+      <div class="floating-window" id="window-Actu">
         <div class="floating-header">
           <span data-i18n="about.title">Moi actuellement</span>
           <button class="minimize-btn">−</button>
@@ -327,39 +327,40 @@
       </div>
 
       <!-- Education Window -->
-      <div class="floating-window" id="window-education" style="top: 320px; left: 900px; width: 340px;">
+      <div class="floating-window" id="window-education">
         <div class="floating-header">
           <span data-i18n="sidebar.education">Éducation</span>
           <button class="minimize-btn">−</button>
         </div>
         <div class="content">
-          <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 1rem;">
-              <p><strong data-i18n="education.university">Université:</strong> UQAT</p>
-              <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqatProgram">Création de jeux vidéo (programmation jouabilité)</span></p>
-              <p><strong data-i18n="education.graduation">Graduation:</strong> 2028</p>
-            </li>
-            <li style="margin-bottom: 1rem;">
-              <p><strong data-i18n="education.university">Université:</strong> UQAC</p>
-              <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqacProgram">Développement de Jeux Vidéo</span></p>
-              <p><strong data-i18n="education.graduation">Graduation:</strong> <span data-i18n="education.programChange">Changement de programme</span></p>
-            </li>
-            <li style="margin-bottom: 1rem;">
-              <p><strong data-i18n="education.cegep">CÉGEP:</strong> Collège de Maisonneuve</p>
-              <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.maisonneuveProgram">Techniques d'intégration multimédia</span></p>
-              <p><strong data-i18n="education.graduation">Graduation:</strong> 2023</p>
-            </li>
-            <li>
-              <p><strong data-i18n="education.highSchool">Secondaire:</strong> Collège Notre-Dame</p>
-              <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.highSchoolDiploma">Diplôme d'études secondaires</span></p>
-              <p><strong data-i18n="education.graduation">Graduation:</strong> 2020</p>
-            </li>
-          </ul>
+          <div class="education-entry">
+            <p><strong data-i18n="education.university">Université:</strong> UQAT</p>
+            <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqatProgram">Création de jeux vidéo (programmation jouabilité)</span></p>
+            <p><strong data-i18n="education.graduation">Graduation:</strong> 2028</p>
+          </div>
+          <hr class="education-divider">
+          <div class="education-entry">
+            <p><strong data-i18n="education.university">Université:</strong> UQAC</p>
+            <p><strong data-i18n="education.bachelor">Baccalauréat:</strong> <span data-i18n="education.uqacProgram">Développement de Jeux Vidéo</span></p>
+            <p><strong data-i18n="education.graduation">Graduation:</strong> <span data-i18n="education.programChange">Changement de programme</span></p>
+          </div>
+          <hr class="education-divider">
+          <div class="education-entry">
+            <p><strong data-i18n="education.cegep">CÉGEP:</strong> Collège de Maisonneuve</p>
+            <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.maisonneuveProgram">Techniques d'intégration multimédia</span></p>
+            <p><strong data-i18n="education.graduation">Graduation:</strong> 2023</p>
+          </div>
+          <hr class="education-divider">
+          <div class="education-entry">
+            <p><strong data-i18n="education.highSchool">Secondaire:</strong> Collège Notre-Dame</p>
+            <p><strong data-i18n="education.program">Programme:</strong> <span data-i18n="education.highSchoolDiploma">Diplôme d'études secondaires</span></p>
+            <p><strong data-i18n="education.graduation">Graduation:</strong> 2020</p>
+          </div>
         </div>
       </div>
 
       <!-- Expérience professionnelle Window -->
-      <div class="floating-window" id="window-xp-pro" style="top: 480px; left: 360px; width: 420px;">
+      <div class="floating-window" id="window-xp-pro">
         <div class="floating-header">
           <span data-i18n="work.title">Expérience professionnelle</span>
           <button class="minimize-btn">−</button>

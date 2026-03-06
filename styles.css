@@ -393,6 +393,17 @@ body {
   margin-right: 8px;
 }
 
+/* ===== EDUCATION ===== */
+.education-entry {
+  padding: 0.5rem 0;
+}
+
+.education-divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 0.25rem 0;
+}
+
 /* ===== COMPETENCES / SKILL BARS ===== */
 .competence {
   display: flex;
