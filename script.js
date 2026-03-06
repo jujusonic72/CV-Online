@@ -81,7 +81,12 @@ const translations = {
     'work.rocldPosition': 'Développeur web à contrat chez ROCLD',
     'work.rocld1': 'Gestion de contenu d\'un site Web',
     'work.rocld2': 'Développement et programmation d\'un site web',
-    'work.rocld3': 'Intégration d\'un thème Wordpress à partir d\'une maquette'
+    'work.rocld3': 'Intégration d\'un thème Wordpress à partir d\'une maquette',
+    'work.studioxPosition': 'Professeur de création de jeux vidéo à temps partiel chez Studio XP',
+    'work.studioxDate': 'Été 2025 – Été 2026',
+    'work.studiox1': 'Communication de groupe',
+    'work.studiox2': 'Vulgarisation de concepts abstraits',
+    'work.studiox3': 'Apprentissage rapide de nouvelle matière et nouveaux logiciels'
   },
   en: {
     'menu.file': 'File',
@@ -158,7 +163,12 @@ const translations = {
     'work.rocldPosition': 'Contract Web Developer at ROCLD',
     'work.rocld1': 'Website content management',
     'work.rocld2': 'Website development and programming',
-    'work.rocld3': 'WordPress theme integration from mockup'
+    'work.rocld3': 'WordPress theme integration from mockup',
+    'work.studioxPosition': 'Part-time Video Game Creation Teacher at Studio XP',
+    'work.studioxDate': 'Summer 2025 – Summer 2026',
+    'work.studiox1': 'Group communication',
+    'work.studiox2': 'Simplifying abstract concepts',
+    'work.studiox3': 'Rapid learning of new subject matter and software'
   }
 };
 
